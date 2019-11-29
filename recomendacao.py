@@ -56,7 +56,7 @@ def getRecomendacoesUsuario(base, usuario):
     return rankings[0:30]
 
 
-def carregaMovieLens(path='/home/ricart/ml-100k'):
+def carregaMovieLens(path='./ml-100k'):
     filmes = {}
     for linha in open(path + '/u.item', encoding="ISO-8859-1"):
         (id, titulo) = linha.split('|')[0:2]
@@ -98,18 +98,16 @@ def calculaItensSimilares(base):
 
 def getRecomendacoesItens(baseUsuario, similaridadeItens, usuario):
     notasUsuario = baseUsuario[usuario]
-    notas={}
-    totalSimilaridade={}
+    notas = {}
+    totalSimilaridade = {}
     for (item, nota) in notasUsuario.items():
         for (similaridade, item2) in similaridadeItens[item]:
             if item2 in notasUsuario: continue
             notas.setdefault(item2, 0)
             notas[item2] += similaridade * nota
-            totalSimilaridade.setdefault(item2,0)
+            totalSimilaridade.setdefault(item2, 0)
             totalSimilaridade[item2] += similaridade
-    rankings=[(score/totalSimilaridade[item], item) for item, score in notas.items()]
+    rankings = [(score / totalSimilaridade[item], item) for item, score in notas.items()]
     rankings.sort()
     rankings.reverse()
     return rankings
-
-
