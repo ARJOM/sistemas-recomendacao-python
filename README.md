@@ -5,3 +5,6 @@ Exemplo de implementação de algoritmos de recomendação para:
 - Similaridade de itens
 - Recomendação de item baseado em itens
 - Leitura de Filmes da base de dados Movie Lens
+
+Links Úteis
+- [Conjunto de dados da plataforma MovieLens](https://grouplens.org/datasets/movielens/)
